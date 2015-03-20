@@ -15,10 +15,11 @@ Then, run it with this command:
 docker run -v /my-repository:/repository -d mcreations/openwrt-wso2is
 ```
 You can use an internet browser for checking the run docker as follows:
-     https://<docker-vnet-ip>:9443/
-     https://<docker-vnet-ip>:9763/
-
-the <docker-vnet-ip> ip address comes from ip address of docker0 interface. use ifconfig to obtain it.
+```
+https://`docker-vnet-ip`:9443/
+https://`docker-vnet-ip`:9763/
+```
+the `docker-vnet-ip` ip address comes from ip address of docker0 interface. use ifconfig to obtain it.
 
 ## Distribution Folder
 To avoid downloading the artifact from wso2.org multiple times, you can download it manually into dist folder, you can use dist/download-wso2is.sh for download the artifact .
