@@ -7,15 +7,25 @@ MAINTAINER Reza Rahimi <rahimi@m-creations.net>
 
 ENV WSO2IS_VERSION 5.0.0
 ENV WSO2IS_HOME /opt/wso2is-${WSO2IS_VERSION}
+ENV WSO2IS_HOME_REPOSITORY /opt/wso2is-${WSO2IS_VERSION}/repository
+
+ENV MOUNTED_REPOSITORY_DIR /repository
+ENV DIST_DIR /mnt/packs
+
+ADD image/root /
+
+RUN mkdir -p /mnt/packs
+
+ADD dist/ /mnt/packs
 
 # Download WSO2IS and installing it
-RUN mkdir -p ${WSO2IS_HOME}  && \
+RUN mkdir -p ${WSO2IS_HOME}  &&  mkdir -p ${MOUNTED_REPOSITORY_DIR} && \
   opkg update && \
   opkg install unzip && \
-  wget --progress=dot:giga  --user-agent="testuser" --referer="http://connect.wso2.com/wso2/getform/reg/new_product_download" http://product-dist.wso2.com/products/identity-server/${WSO2IS_VERSION}/wso2is-${WSO2IS_VERSION}.zip && \
-  unzip wso2is-${WSO2IS_VERSION}.zip -d /tmp && \
-  rm wso2is-${WSO2IS_VERSION}.zip && \
-  mv /tmp/wso2is-* /opt/ && \
+  ([ -f $DIST_DIR/wso2is-${WSO2IS_VERSION}.zip ] ||  wget -O $DIST_DIR/wso2is-${WSO2IS_VERSION}.zip --progress=dot:giga  --user-agent="testuser" --referer="http://connect.wso2.com/wso2/getform/reg/new_product_download" http://product-dist.wso2.com/products/identity-server/${WSO2IS_VERSION}/wso2is-${WSO2IS_VERSION}.zip) && \
+  unzip $DIST_DIR/wso2is-${WSO2IS_VERSION}.zip -d /tmp && \
+  rm $DIST_DIR/wso2is-${WSO2IS_VERSION}.zip && \
+  mv -f /tmp/wso2is-* /opt/ && \
   sed  -i 's/$JAVA_HOME\/bin\/java/$JAVA_HOME\/bin\/bundled\/java/g' ${WSO2IS_HOME}/bin/wso2server.sh && \
   echo "export PATH=$PATH:$JAVA_HOME/bin/bundled:${WSO2IS_HOME}/bin" >> /etc/profile && \
   echo "export CARBON_HOME=${WSO2IS_HOME}" >> /etc/profile
@@ -23,4 +33,4 @@ RUN mkdir -p ${WSO2IS_HOME}  && \
 # Expose ports
 EXPOSE 9443 9763
 
-CMD ${WSO2IS_HOME}/bin/wso2server.sh
+CMD ["/start-wso2is"]
