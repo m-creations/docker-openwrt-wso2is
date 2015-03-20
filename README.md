@@ -28,3 +28,9 @@ cd /path/to/yours/docker-opewrt-wso2is/dist
 sh download-wso2is.sh
 ```
 You can modify artifact version in download-wso2is.sh file, the default version is 5.0.0.
+
+## Build
+In the root of cloned project run following command 
+```
+docker build -t mcreations/openwrt-wso2is .
+```
