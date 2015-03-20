@@ -7,8 +7,8 @@ for example :
 ```
 mkdir /my-repository
 ```
-If you leave it empty at runtime it will fill with respository folder of downloaded wso2is-#.#.#.zip file for first time.
-If you have a pre-configured WSO2IS you can copy repository folder of it into new created /my-repository foldr.
+If you leave it empty at runtime it will fill with the respository folder of downloaded `wso2is-#.#.#.zip` file for first time.
+If you have a pre-configured WSO2IS you can copy repository folder of it into new created `/my-repository` foldr.
 
 Then, run it with this command:
 ```
@@ -22,9 +22,9 @@ https://docker-vnet-ip:9763/
 the `docker-vnet-ip` ip address comes from ip address of docker0 interface. use ifconfig to obtain it.
 
 ## Distribution Folder
-To avoid downloading the artifact from wso2.org multiple times, you can download it manually into dist folder, you can use dist/download-wso2is.sh for download the artifact .
+To avoid downloading the artifact from wso2.org multiple times, you can download it manually into dist folder, you can use `download-wso2is.sh` inside dist for download the artifact .
 ```
-cd docker-opewrt-wso2is
+cd /path/to/yours/docker-opewrt-wso2is/dist
 sh download-wso2is.sh
 ```
 You can modify artifact version in download-wso2is.sh file, the default version is 5.0.0.
