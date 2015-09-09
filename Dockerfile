@@ -26,7 +26,6 @@ RUN mkdir -p ${WSO2IS_HOME}  &&  mkdir -p ${MOUNTED_REPOSITORY_DIR} && \
   unzip $DIST_DIR/wso2is-${WSO2IS_VERSION}.zip -d /tmp && \
   rm $DIST_DIR/wso2is-${WSO2IS_VERSION}.zip && \
   mv -f /tmp/wso2is-* /opt/ && \
-  sed  -i 's/$JAVA_HOME\/bin\/java/$JAVA_HOME\/bin\/bundled\/java/g' ${WSO2IS_HOME}/bin/wso2server.sh && \
   echo "export PATH=$PATH:$JAVA_HOME/bin/bundled:${WSO2IS_HOME}/bin" >> /etc/profile && \
   echo "export CARBON_HOME=${WSO2IS_HOME}" >> /etc/profile
 
