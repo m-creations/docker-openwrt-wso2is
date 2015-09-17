@@ -14,6 +14,16 @@ Then, run it with this command:
 ```
 docker run -v /my-repository:/repository -d mcreations/openwrt-wso2is
 ```
+For running the server in debug mode you can use --env switch to run in debug mode:
+```
+docker run -v /my-repository:/repository --env WSO2IS_RUN_MODE=debug -d mcreations/openwrt-wso2is
+```
+which will run the docker in debug mode on port 5005 and for using another debug port:
+```
+docker run -v /my-repository:/repository --env WSO2IS_RUN_MODE=debug --env WSO2IS_DEBUG_PORT=8000 -d mcreations/openwrt-wso2is
+```
+in debug mode server wait to connecting the remote debugger before start.
+
 You can use an internet browser for checking the run docker as follows:
 ```
 https://docker-vnet-ip:9443/

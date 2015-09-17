@@ -12,6 +12,10 @@ ENV WSO2IS_HOME_REPOSITORY /opt/wso2is-${WSO2IS_VERSION}/repository
 ENV MOUNTED_REPOSITORY_DIR /repository
 ENV DIST_DIR /mnt/packs
 
+# normal, debug
+ENV WSO2IS_RUN_MODE=normal
+ENV WSO2IS_DEBUG_PORT=5005
+
 ADD image/root /
 
 RUN mkdir -p /mnt/packs

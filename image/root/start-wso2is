@@ -11,4 +11,11 @@ fi
 
 ln -s $MOUNTED_REPOSITORY_DIR $WSO2IS_HOME_REPOSITORY
 
+case $WSO2IS_RUN_MODE in
+debug)
+sh $WSO2IS_HOME/bin/wso2server.sh debug $WSO2IS_DEBUG_PORT
+;;
+*)
 sh $WSO2IS_HOME/bin/wso2server.sh
+;;
+esac
